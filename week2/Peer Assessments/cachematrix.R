@@ -3,18 +3,26 @@
 ###############################################################################
 
 
-## Initialize orgMat variable to x as soon as this object is created.
+# Initialize orgMat variable to x as soon as this object is created.
 makeCacheMatrix <- function(x = matrix()) {
     orgMat <- NULL
     inverseMat <- NULL
+    
+    # save original matrix
     setMat <- function(mat) {
         orgMat <<- mat
         inverseMat <<- NULL
     }
+    # return original matrix
     getMat <- function() orgMat
+    # save inverse matrix
     setInverseMat <- function(mat) inverseMat <<- mat
+    # return inverse matrix
     getInverseMat <- function() inverseMat
+    
+    # initialize orgMat var
     setMat(x)
+    
     list(setMat = setMat, getMat = getMat, setInverseMat = setInverseMat,
          getInverseMat = getInverseMat)    
 }
