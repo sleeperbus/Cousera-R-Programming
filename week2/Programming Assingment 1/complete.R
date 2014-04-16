@@ -9,5 +9,6 @@ complete <- function(directory, id = 1:332) {
     }
     counts <- do.call("rbind", lapply(files, dataCount))
     data <- data.frame(id, counts)
+    names(data) <- c("id", "nobs")
     data
 }
