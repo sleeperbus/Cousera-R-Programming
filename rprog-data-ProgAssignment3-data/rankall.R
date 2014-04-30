@@ -15,9 +15,11 @@ rankall <- function(outcome, num = "best") {
     if (!any(outcomes == outcome)) stop("invalid outcome") 
     
     result <- do.call("rbind", lapply(states, function(s) {
-        data.state <- data[data$state == s, ]
-        data.state <- data.state[!is.na(data.state[outcome]), ]
+        result <- data[data$state == s, ]
+        result <- result[with(result, order(-result$outcome)), ]
+        
+#        data.state <- data.state[!is.na(data.state[outcome]), ]
         data.state <- data.state[num, c("hospital", "state", outcome)]
     }));
-#    result <- result[with(result, order(state)), ]
+    result <- result[with(result, order(state)), ]
 }
